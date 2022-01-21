@@ -1,0 +1,15 @@
+package grupo2.projeto.integrador.projetointegrador;
+
+import grupo2.projeto.integrador.projetointegrador.model.Skill;
+
+public class Teste2 {
+
+	public static void main(String[] args) {
+
+		
+		Skill skill = new Skill();
+		
+		
+	}
+
+}

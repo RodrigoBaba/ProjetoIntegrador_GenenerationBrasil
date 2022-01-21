@@ -1,0 +1,5 @@
+package grupo2.projeto.integrador.projetointegrador.util;
+
+public enum Nivel {
+
+}
