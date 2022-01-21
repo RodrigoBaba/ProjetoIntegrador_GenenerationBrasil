@@ -28,7 +28,7 @@ public class Skill {
 
 	// ManyToOne(mappedBy = "card", cascade = CascadeType.All)
 	// @JsonIgnoreProperties("card")
-	private Card card;
+	//private Card card;
 
 	public Long getId() {
 		return id;
@@ -46,13 +46,13 @@ public class Skill {
 		this.skill = skill;
 	}
 
-	public Card getCard() {
+	/*public Card getCard() {
 		return card;
 	}
 
 	public void setCard(Card card) {
 		this.card = card;
-	}
+	}*/
 
 	public Nivel getNivel() {
 		return nivel;
