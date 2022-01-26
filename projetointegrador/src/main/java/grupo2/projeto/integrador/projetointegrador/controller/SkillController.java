@@ -3,6 +3,8 @@ package grupo2.projeto.integrador.projetointegrador.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +24,7 @@ import grupo2.projeto.integrador.projetointegrador.repository.SkillRepository;
 
 @RestController
 @RequestMapping("/skill")
-@CrossOrigin("*")
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SkillController {
 
 	@Autowired
@@ -56,13 +57,13 @@ public class SkillController {
 	}
 
 	@PostMapping("/insert")
-	public ResponseEntity<Skill> insert(@RequestBody Skill intoSkill) {
+	public ResponseEntity<Skill> insert(@Valid @RequestBody Skill intoSkill) {
 		return ResponseEntity.status(201).body(repository.save(intoSkill));
 
 	}
 
 	@PutMapping("/alterar/{id}")
-	public ResponseEntity<Skill> putSkill(@RequestBody Skill altSkill) {
+	public ResponseEntity<Skill> putSkill(@Valid @RequestBody Skill altSkill) {
 		return repository.findById(altSkill.getId())
 				.map(resp -> ResponseEntity.status(200).body(repository.save(altSkill))).orElseGet(() -> {
 					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID não encontrado");
