@@ -22,13 +22,19 @@ public class Skill {
 	@NotBlank(message = "Skill obrigatorio")
 	private String skill;
 
-	@NotBlank(message = "Nível obrigatório!")
+	/*@NotBlank(message = "Nível obrigatório!")
 	@Enumerated(EnumType.STRING)
-	public Nivel nivel;
-
+	public Nivel nivel;*/
+	
+	private String nivel;
+	
 	// ManyToOne(mappedBy = "card", cascade = CascadeType.All)
 	// @JsonIgnoreProperties("card")
 	//private Card card;
+
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
+	}
 
 	public Long getId() {
 		return id;
@@ -54,11 +60,11 @@ public class Skill {
 		this.card = card;
 	}*/
 
-	public Nivel getNivel() {
+	/*public Nivel getNivel() {
 		return nivel;
 	}
 
 	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;
-	}
+	}*/
 }
