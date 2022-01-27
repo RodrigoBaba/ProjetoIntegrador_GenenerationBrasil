@@ -53,7 +53,17 @@ public class UsuarioController {
 				});
 	}
 	
-	
+	@SuppressWarnings("rawtypes")
+	@DeleteMapping("/delete/{id_usuario}")
+	public ResponseEntity deleteUsuario (@PathVariable (value = "id_usuario") Long id){
+		Optional<Usuario> optional = repository.findById(id);
+		
+		if(optional.isPresent()) {
+			repository.deleteById(id);
+			return ResponseEntity.status(200).build();
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");		}
+	}
 	
 	
 	
