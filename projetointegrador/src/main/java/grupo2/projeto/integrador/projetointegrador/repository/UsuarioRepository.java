@@ -12,5 +12,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public List<Usuario> findByCityContainingIgnoreCase(String cityUser);
 
-	public List<Usuario> findAllCityContainingIgnoreCase(String cityUser);
+	public List<Usuario> findAllByCityContainingIgnoreCase(String cityUser);
 }
