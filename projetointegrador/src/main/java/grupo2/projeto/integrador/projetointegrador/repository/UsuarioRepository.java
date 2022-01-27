@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import grupo2.projeto.integrador.projetointegrador.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
-	
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
 	public List<Usuario> findByCityContainingIgnoreCase(String cityUser);
-	
+
 	public List<Usuario> findAllCityContainingIgnoreCase(String cityUser);
 }
