@@ -57,7 +57,21 @@ public class UsuarioController {
 		
 	}
 	
-	
+	@GetMapping("/allcity/{cityUser}")
+	public ResponseEntity<List<Usuario>> getAllCity(@PathVariable (value = "cityUser") String cityUser) {
+		List<Usuario> listCity = repository.findAllByCityContainingIgnoreCase(cityUser);
+		
+		if (listCity.isEmpty()) {
+			
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+			
+		} else {
+			
+			return ResponseEntity.ok(listCity);
+			
+		}
+		
+	}
 	
 	@PostMapping("/save")
 	public ResponseEntity<Usuario> saveUsuario(@Valid @RequestBody Usuario usuario){
