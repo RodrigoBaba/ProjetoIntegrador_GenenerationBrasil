@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,6 +41,24 @@ public class UsuarioController {
 		}
 	}
 	
+	@GetMapping("/city/{cityUser}")
+	public ResponseEntity<List<Usuario>> getCity(@PathVariable (value = "cityUser") String cityUser) {
+		List<Usuario> listCity = repository.findByCityContainingIgnoreCase(cityUser);
+		
+		if (listCity.isEmpty()) {
+			
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+			
+		} else {
+			
+			return ResponseEntity.ok(listCity);
+			
+		}
+		
+	}
+	
+	
+	
 	@PostMapping("/save")
 	public ResponseEntity<Usuario> saveUsuario(@Valid @RequestBody Usuario usuario){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
@@ -64,9 +83,6 @@ public class UsuarioController {
 		} else {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");		}
 	}
-	
-	
-	
 	
 }
 
