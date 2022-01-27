@@ -45,6 +45,14 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
 	}
 	
+	@PutMapping("/update")
+	public ResponseEntity<Usuario> updateUsuario(@Valid @RequestBody Usuario usuario ){
+		return repository.findById(usuario.getId()).map(resp -> ResponseEntity.status(200).body(repository.save(usuario)))
+				.orElseGet(() -> {
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");
+				});
+	}
+	
 	
 	
 	
