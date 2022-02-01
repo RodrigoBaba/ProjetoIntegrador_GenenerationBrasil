@@ -1,11 +1,15 @@
 package grupo2.projeto.integrador.projetointegrador.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import grupo2.projeto.integrador.projetointegrador.util.Nivel;
 
 @Entity
 @Table(name = "tb_skills")
