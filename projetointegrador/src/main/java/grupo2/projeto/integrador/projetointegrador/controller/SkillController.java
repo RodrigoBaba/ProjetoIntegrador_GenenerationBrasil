@@ -21,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import grupo2.projeto.integrador.projetointegrador.model.Skill;
 import grupo2.projeto.integrador.projetointegrador.repository.SkillRepository;
+import grupo2.projeto.integrador.projetointegrador.util.Nivel;
 
 @RestController
 @RequestMapping("/skill")
@@ -54,6 +55,12 @@ public class SkillController {
 			return ResponseEntity.ok(list);
 
 		}
+	}
+	
+	@GetMapping("/nivel/{nivel}")
+	public ResponseEntity<List<Skill>> findAllByNivel(@PathVariable("nivel") Nivel nivel) {
+		List<Skill> list = repository.findAllByNivel(nivel);		
+		return ResponseEntity.ok(list);
 	}
 
 	@PostMapping("/insert")
