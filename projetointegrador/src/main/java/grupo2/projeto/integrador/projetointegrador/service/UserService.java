@@ -3,12 +3,12 @@ package grupo2.projeto.integrador.projetointegrador.service;
 import java.nio.charset.Charset;
 import java.util.Optional;
 import org.apache.commons.codec.binary.Base64;
-import org.generation.blogpessoal.model.UserLogin;
-import org.generation.blogpessoal.model.Usuario;
-import org.generation.blogpessoal.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import grupo2.projeto.integrador.projetointegrador.model.Usuario;
+import grupo2.projeto.integrador.projetointegrador.repository.UsuarioRepository;
 
 @Service
 public class UserService {
@@ -16,11 +16,11 @@ public class UserService {
     @Autowired
     private UsuarioRepository repository;
 
-    public Usuario SaveUser (Usuario Usuario) {
+    public Usuario SaveUser (Usuario user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        String passwordEncoder = encoder.encoder(usuario.getPassword());
-        usuario.setPassword(passwordEncoder);
+        String passwordEncoder = encoder.encode(user.getPassword());
+        user.setPassword(passwordEncoder);
 
         return repository.save(user);
 
