@@ -33,7 +33,7 @@ public class UserService {
         Optional<Usuario> usuario = repository.findByEmail(user.get().getEmail());
 
         if (usuario.isPresent()) {
-            if (encoder.matches(user.get().getPassword(), user.get().getPassword())) {
+            if (encoder.matches(user.get().getPassword(), usuario.get().getPassword())) {
 
                 String auth = user.get().getEmail() + ":" + user.get().getPassword();
                 byte[] encoderAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
