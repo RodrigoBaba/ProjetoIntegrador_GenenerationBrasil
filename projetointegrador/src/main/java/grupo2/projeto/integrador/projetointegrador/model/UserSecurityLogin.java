@@ -2,28 +2,28 @@ package grupo2.projeto.integrador.projetointegrador.model;
 
 public class UserSecurityLogin {
 
-	private String name;
+	private String fullName;
 
-	private String user;
+	private String email;
 
 	private String password;
 
 	private String token;
 
-	public String getName() {
-		return name;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
-	public String getUser() {
-		return user;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import grupo2.projeto.integrador.projetointegrador.model.UserSecurityLogin;
 import grupo2.projeto.integrador.projetointegrador.model.Usuario;
 import grupo2.projeto.integrador.projetointegrador.repository.UsuarioRepository;
+import grupo2.projeto.integrador.projetointegrador.service.UserService;
 
 @RestController
 @RequestMapping("/usuario")
@@ -29,6 +32,8 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository repository;
+	
+	@Autowired UserService service;
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Usuario>> getAll() {
@@ -39,23 +44,15 @@ public class UsuarioController {
 			return ResponseEntity.ok(listUsuario);
 		}
 	}
-
-	@GetMapping("/city/{cityUser}")
-	public ResponseEntity<List<Usuario>> getCity(@PathVariable(value = "cityUser") String cityUser) {
-		List<Usuario> listCity = repository.findByCityContainingIgnoreCase(cityUser);
-
-		if (listCity.isEmpty()) {
-
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-
-		} else {
-
-			return ResponseEntity.ok(listCity);
-
-		}
-
+	
+	@GetMapping("/id/{id_usuario}")
+	public ResponseEntity<Usuario> getById(@PathVariable(value = "id_usuario") Long id){
+		return repository.findById(id).map(resp -> ResponseEntity.status(200).body(resp))
+				.orElseGet(() -> {
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");
+				});
 	}
-
+		
 	@GetMapping("/allcity/{cityUser}")
 	public ResponseEntity<List<Usuario>> getAllCity(@PathVariable(value = "cityUser") String cityUser) {
 		List<Usuario> listCity = repository.findAllByCityContainingIgnoreCase(cityUser);
@@ -71,10 +68,17 @@ public class UsuarioController {
 		}
 
 	}
+	
+	@PostMapping("/logar")
+	public ResponseEntity<UserSecurityLogin> autentication(@RequestBody Optional<UserSecurityLogin> user) {
+		return service.login(user).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.status(401).build());
+	}
 
-	@PostMapping("/save")
-	public ResponseEntity<Usuario> saveUsuario(@Valid @RequestBody Usuario usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario) {
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(service.saveUser(usuario));
 	}
 
 	@PutMapping("/update")

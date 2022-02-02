@@ -6,8 +6,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import grupo2.projeto.integrador.projetointegrador.util.Nivel;
 
@@ -23,13 +27,12 @@ public class Skill {
 	private String skill;
 
 	@Enumerated(EnumType.STRING)
-	public Nivel nivel;
+	public Nivel nivel;	
 	
-	
-	// ManyToOne(mappedBy = "card", cascade = CascadeType.All)
-	// @JsonIgnoreProperties("card")
-	//private Card card;
-	
+	@ManyToOne
+	@JoinColumn(name = "fk_card")
+	@JsonIgnoreProperties("skill")
+	private Card card;	
 
 	public Long getId() {
 		return id;
@@ -47,14 +50,6 @@ public class Skill {
 		this.skill = skill;
 	}
 
-	/*public Card getCard() {
-		return card;
-	}
-
-	public void setCard(Card card) {
-		this.card = card;
-	}*/
-
 	public Nivel getNivel() {
 		return nivel;
 	}
@@ -62,4 +57,12 @@ public class Skill {
 	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;
 	}
+
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}		
 }

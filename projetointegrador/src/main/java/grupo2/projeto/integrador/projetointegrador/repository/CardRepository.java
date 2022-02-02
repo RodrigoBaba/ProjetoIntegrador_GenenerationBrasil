@@ -10,5 +10,5 @@ import grupo2.projeto.integrador.projetointegrador.model.Card;
 @Repository
 public interface CardRepository extends JpaRepository<Card, Long> {
 
-	public List<Card> findAllByfuncaoContainingIgnoreCase(String funcao);
+	public List<Card> findAllByFuncaoContainingIgnoreCase(String funcao);
 }
