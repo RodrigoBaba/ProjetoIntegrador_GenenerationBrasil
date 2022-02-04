@@ -30,7 +30,7 @@ public class Card {
 	private Long id_card;
 
 	@NotNull
-	private String funcao;
+	private String occupation;
 
 	@NotNull
 	private String nome_empresa;
@@ -65,12 +65,12 @@ public class Card {
 		this.id_card = id_card;
 	}
 
-	public String getFuncao() {
-		return funcao;
+	public String getOccupation() {
+		return occupation;
 	}
 
-	public void setFuncao(String funcao) {
-		this.funcao = funcao;
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
 	}
 
 	public String getNome_empresa() {
