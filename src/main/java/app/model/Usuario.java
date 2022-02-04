@@ -19,39 +19,35 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Usuario {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String fullName;
-	
+
 	@NotNull
 	private String password;
-	
-	
+
 	private String picture;
-	
-	
+
 	private String autoBiography;
-	
+
 	@NotNull
 	private String email;
-	
+
 	@NotNull
 	private String phoneNumber;
-	
+
 	@NotNull
 	private Integer age;
-	
-	
+
 	private String linkedin;
-	
-	
+
 	private String gitHub;
-	
+
 	@NotNull
 	private String city;
-	
+
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
 	private List<Card> card = new ArrayList<>();
@@ -150,5 +146,5 @@ public class Usuario {
 
 	public void setCard(List<Card> card) {
 		this.card = card;
-	}	
+	}
 }

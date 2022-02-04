@@ -27,12 +27,12 @@ public class Skill {
 	private String skill;
 
 	@Enumerated(EnumType.STRING)
-	public Nivel nivel;	
-	
+	public Nivel nivel;
+
 	@ManyToOne
 	@JoinColumn(name = "fk_card")
 	@JsonIgnoreProperties("skill")
-	private Card card;	
+	private Card card;
 
 	public Long getId() {
 		return id;
@@ -64,5 +64,5 @@ public class Skill {
 
 	public void setCard(Card card) {
 		this.card = card;
-	}		
+	}
 }

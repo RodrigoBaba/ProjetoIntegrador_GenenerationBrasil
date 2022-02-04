@@ -31,8 +31,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository repository;
-	
-	@Autowired UserService service;
+
+	@Autowired
+	UserService service;
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Usuario>> getAll() {
@@ -43,15 +44,15 @@ public class UsuarioController {
 			return ResponseEntity.ok(listUsuario);
 		}
 	}
-	
+
 	@GetMapping("/id/{id_usuario}")
-	public ResponseEntity<Usuario> getById(@PathVariable(value = "id_usuario") Long id){
+	public ResponseEntity<Usuario> getById(@PathVariable(value = "id_usuario") Long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.status(200).body(resp))
 				.orElseGet(() -> {
 					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");
 				});
 	}
-		
+
 	@GetMapping("/allcity/{cityUser}")
 	public ResponseEntity<List<Usuario>> getAllCity(@PathVariable(value = "cityUser") String cityUser) {
 		List<Usuario> listCity = repository.findAllByCityContainingIgnoreCase(cityUser);
@@ -67,7 +68,7 @@ public class UsuarioController {
 		}
 
 	}
-	
+
 	@PostMapping("/logar")
 	public ResponseEntity<UserSecurityLogin> autentication(@RequestBody Optional<UserSecurityLogin> user) {
 		return service.login(user).map(resp -> ResponseEntity.ok(resp))

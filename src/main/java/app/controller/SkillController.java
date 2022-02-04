@@ -36,7 +36,9 @@ public class SkillController {
 		List<Skill> listSkill = repository.findAll();
 		if (listSkill.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
 		} else {
+
 			return ResponseEntity.ok(listSkill);
 		}
 	}
@@ -56,10 +58,10 @@ public class SkillController {
 
 		}
 	}
-	
+
 	@GetMapping("/nivel/{nivel}")
 	public ResponseEntity<List<Skill>> findAllByNivel(@PathVariable("nivel") Nivel nivel) {
-		List<Skill> list = repository.findAllByNivel(nivel);		
+		List<Skill> list = repository.findAllByNivel(nivel);
 		return ResponseEntity.ok(list);
 	}
 

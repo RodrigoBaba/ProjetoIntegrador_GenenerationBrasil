@@ -24,35 +24,35 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tb_card")
 public class Card {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_card ;
-	
+	private Long id_card;
+
 	@NotNull
-	private String funcao ;
-	
+	private String funcao;
+
 	@NotNull
-	private String nome_empresa ;
-	
+	private String nome_empresa;
+
 	@NotNull
-	private String formacoes ;
-	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private String formacoes;
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@NotBlank
-	private Date dataInicio ;
-	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private Date dataInicio;
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@NotBlank
-	private LocalDate dataFinal ;
-	
-	private String imagem ;
-	
+	private LocalDate dataFinal;
+
+	private String imagem;
+
 	@ManyToOne
 	@JoinColumn(name = "fk_usuario")
 	@JsonIgnoreProperties("card")
 	private Usuario usuario;
-	
+
 	@OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("card")
 	private List<Skill> skill = new ArrayList<>();
@@ -127,5 +127,5 @@ public class Card {
 
 	public void setSkill(List<Skill> skill) {
 		this.skill = skill;
-	}	
+	}
 }

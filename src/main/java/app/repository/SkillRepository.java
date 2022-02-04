@@ -9,9 +9,9 @@ import app.model.Skill;
 import app.util.Nivel;
 
 @Repository
-public interface SkillRepository extends JpaRepository<Skill, Long>{
+public interface SkillRepository extends JpaRepository<Skill, Long> {
 
 	public List<Skill> findAllBySkillContainingIgnoreCase(String skill);
-	
+
 	public List<Skill> findAllByNivel(Nivel nivel);
 }
