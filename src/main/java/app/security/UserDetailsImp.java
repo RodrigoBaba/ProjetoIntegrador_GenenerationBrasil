@@ -1,11 +1,11 @@
-package grupo2.projeto.integrador.projetointegrador.security;
+package app.security;
 
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import grupo2.projeto.integrador.projetointegrador.model.Usuario;
+import app.model.Usuario;
 
 public class UserDetailsImp implements UserDetails {
 

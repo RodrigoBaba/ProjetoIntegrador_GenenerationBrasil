@@ -1,4 +1,4 @@
-package grupo2.projeto.integrador.projetointegrador.controller;
+package app.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import grupo2.projeto.integrador.projetointegrador.model.Skill;
-import grupo2.projeto.integrador.projetointegrador.repository.SkillRepository;
-import grupo2.projeto.integrador.projetointegrador.util.Nivel;
+import app.model.Skill;
+import app.repository.SkillRepository;
+import app.util.Nivel;
 
 @RestController
 @RequestMapping("/skill")

@@ -1,4 +1,4 @@
-package grupo2.projeto.integrador.projetointegrador.service;
+package app.service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import grupo2.projeto.integrador.projetointegrador.model.UserSecurityLogin;
-import grupo2.projeto.integrador.projetointegrador.model.Usuario;
-import grupo2.projeto.integrador.projetointegrador.repository.UsuarioRepository;
+import app.model.UserSecurityLogin;
+import app.model.Usuario;
+import app.repository.UsuarioRepository;
 
 @Service
 public class UserService {

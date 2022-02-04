@@ -1,4 +1,4 @@
-package grupo2.projeto.integrador.projetointegrador.model;
+package app.model;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import grupo2.projeto.integrador.projetointegrador.util.Nivel;
+import app.util.Nivel;
 
 @Entity
 @Table(name = "tb_skills")

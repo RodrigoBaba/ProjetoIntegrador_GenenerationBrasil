@@ -1,4 +1,4 @@
-package grupo2.projeto.integrador.projetointegrador.security;
+package app.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
