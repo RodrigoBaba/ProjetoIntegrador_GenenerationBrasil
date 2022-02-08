@@ -44,11 +44,11 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ### 📈 **Equipe**
 <table>
   <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/isabel-alberti/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/83669003?v=4" width="50px;" alt=""/><br /><sub><b>Bruno Ribeiro</b></sub></a><br /><a href="https://www.linkedin.com/in/bruno-kyo/" title="Bruno Ribeiro">Developer</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/rodrigo-nuciatelli-baba-a64414217/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/90431649?v=4" width="100px;" alt=""/><br /><sub><b>Catarina Rinaldi</b></sub></a><br /><a href="https://www.linkedin.com/in/catarinarinaldi/" title="Catarina Rinaldi">Developer</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/lucas-henrique-aba159228/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/95706847?v=4" width="100px;" alt=""/><br /><sub><b>Igor Miramisawa</b></sub></a><br /><a href="https://www.linkedin.com/in/igor-miramisawa-de-souza-633259221/" title="Igor Miramisawa">Developer</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/evyrosa/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/95727382?v=4" width="100px;" alt=""/><br /><sub><b>Sarah Nani</b></sub></a><br /><a href="https://www.linkedin.com/in/sarahnani/" title="Sarah Nani">Developer</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/evyrosa/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/94998727?v=4" width="100px;" alt=""/><br /><sub><b>Thiago Batista</b></sub></a><br /><a href="https://www.linkedin.com/in/thiago-batista-da-graca/" title="Thiago Batista">Developer/a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/isabel-alberti/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/83669003?v=4" width="50px;" alt=""/><br /><sub><b>Isabel Alberti</b></sub></a><br /></td>
+    <td align="center"><a href="https://www.linkedin.com/in/rodrigo-nuciatelli-baba-a64414217/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/90431649?v=4" width="100px;" alt=""/><br /><sub><b>Rodrigo Nuciatelli</b></sub></a><br /></td>
+    <td align="center"><a href="https://www.linkedin.com/in/lucas-henrique-aba159228/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/95706847?v=4" width="100px;" alt=""/><br /><sub><b>Lucas Henrique</b></sub></a><br /></td>
+    <td align="center"><a href="https://www.linkedin.com/in/evyrosa/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/95727382?v=4" width="100px;" alt=""/><br /><sub><b>Evelyn Rosa</b></sub></a><br /></td>
+    <td align="center"><a href="https://www.linkedin.com/in/gabriel-luis-nolasco-10b18b22b/"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/94998727?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Nolasco</b></sub></a><br /></td>
   </tr>
 </table>
 
