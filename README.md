@@ -14,7 +14,7 @@
 <p align="left">Projeto Integrador feito em equipe para a finalização do <strong>Bloco III</strong> do Bootcamp da <strong>Generation Brasil</strong>.
 <br>
 </p>
-<p align="left">Site e aplicativo mosntados pensando em auxiliar na construção de currículos.
+<p align="left">Site e aplicativo montados pensando em auxiliar na construção de currículos.
 <br>
 </p>
 
