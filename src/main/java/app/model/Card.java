@@ -45,9 +45,9 @@ public class Card {
 	private String image;
 
 	@ManyToOne
-	@JoinColumn(name = "fk_usuario")
+	@JoinColumn(name = "fk_user")
 	@JsonIgnoreProperties("card")
-	private User usuario;
+	private User user;
 
 	@OneToMany(mappedBy = "card", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("card")
@@ -117,12 +117,12 @@ public class Card {
 		this.image = image;
 	}
 
-	public User getUsuario() {
-		return usuario;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<Skill> getSkill() {

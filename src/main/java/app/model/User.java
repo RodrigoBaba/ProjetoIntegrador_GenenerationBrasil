@@ -54,8 +54,8 @@ public class User {
 	
 	private String type;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("usuario")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("user")
 	private List<Card> card = new ArrayList<>();
 
 	public Long getId() {
