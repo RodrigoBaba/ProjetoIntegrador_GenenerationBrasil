@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
-public class Usuario {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,26 +27,27 @@ public class Usuario {
 
 	@NotNull
 	private String password;
-
-	private String picture;
-
-	private String autoBiography;
-
+	
 	@NotNull
 	private String email;
 
-	@NotNull
+	private String picture;
+
+	private String autoBiography;	
+	
 	private String phoneNumber;
 
-	@NotNull
 	private Integer age;
 
 	private String linkedin;
 
 	private String gitHub;
 
-	@NotNull
 	private String city;
+	
+	private String state;
+	
+	private String type;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
@@ -76,6 +77,14 @@ public class Usuario {
 		this.password = password;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getPicture() {
 		return picture;
 	}
@@ -90,14 +99,6 @@ public class Usuario {
 
 	public void setAutoBiography(String autoBiography) {
 		this.autoBiography = autoBiography;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getPhoneNumber() {
@@ -138,6 +139,22 @@ public class Usuario {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}	
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public List<Card> getCard() {

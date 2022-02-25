@@ -5,20 +5,22 @@ import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import app.model.UserSecurityLogin;
-import app.model.Usuario;
-import app.repository.UsuarioRepository;
+import app.model.User;
+import app.repository.UserRepository;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UsuarioRepository repository;
+    private UserRepository repository;
 
-    public Usuario saveUser(Usuario user) {
+    public User saveUser(User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         String passwordEncoder = encoder.encode(user.getPassword());
@@ -30,7 +32,7 @@ public class UserService {
 
     public Optional<UserSecurityLogin> login(Optional<UserSecurityLogin> user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        Optional<Usuario> usuario = repository.findByEmail(user.get().getEmail());
+        Optional<User> usuario = repository.findByEmail(user.get().getEmail());
 
         if (usuario.isPresent()) {
             if (encoder.matches(user.get().getPassword(), usuario.get().getPassword())) {
@@ -41,11 +43,15 @@ public class UserService {
 
                 user.get().setToken(authHeader);
                 user.get().setFullName(usuario.get().getFullName());
+                user.get().setId(usuario.get().getId());
+                user.get().setEmail(usuario.get().getEmail());
+                user.get().setPicture(usuario.get().getPicture());
+                user.get().setType(usuario.get().getType());
 
-                return user;
-            }
+                return user;                
+            }  
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Senha Inválida");
         }
         return null;
     }
-
 }

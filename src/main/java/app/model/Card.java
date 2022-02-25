@@ -1,7 +1,6 @@
 package app.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,42 +25,72 @@ public class Card {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_card;
+	private Long id;
 
-	@NotNull
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotBlank
+	private Date startDate;
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")	
+	private Date endDate;
+	
+	private String institution;
+	
+	private String companyName;
+	
 	private String occupation;
 
-	@NotNull
-	private String nome_empresa;
+	private String formation;
 
-	@NotNull
-	private String formacoes;
-
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@NotBlank
-	private Date dataInicio;
-
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@NotBlank
-	private LocalDate dataFinal;
-
-	private String imagem;
+	private String image;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_usuario")
 	@JsonIgnoreProperties("card")
-	private Usuario usuario;
+	private User usuario;
 
 	@OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("card")
 	private List<Skill> skill = new ArrayList<>();
 
-	public Long getId_card() {
-		return id_card;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_card(Long id_card) {
-		this.id_card = id_card;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(String institution) {
+		this.institution = institution;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public String getOccupation() {
@@ -73,51 +101,27 @@ public class Card {
 		this.occupation = occupation;
 	}
 
-	public String getNome_empresa() {
-		return nome_empresa;
+	public String getFormation() {
+		return formation;
 	}
 
-	public void setNome_empresa(String nome_empresa) {
-		this.nome_empresa = nome_empresa;
+	public void setFormation(String formation) {
+		this.formation = formation;
 	}
 
-	public String getFormacoes() {
-		return formacoes;
+	public String getImage() {
+		return image;
 	}
 
-	public void setFormacoes(String formacoes) {
-		this.formacoes = formacoes;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
-	public Date getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	public LocalDate getDataFinal() {
-		return dataFinal;
-	}
-
-	public void setDataFinal(LocalDate dataFinal) {
-		this.dataFinal = dataFinal;
-	}
-
-	public String getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
-	}
-
-	public Usuario getUsuario() {
+	public User getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(User usuario) {
 		this.usuario = usuario;
 	}
 
@@ -127,5 +131,5 @@ public class Card {
 
 	public void setSkill(List<Skill> skill) {
 		this.skill = skill;
-	}
+	}	
 }

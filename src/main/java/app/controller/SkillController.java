@@ -31,7 +31,7 @@ public class SkillController {
 	@Autowired
 	private SkillRepository repository;
 
-	@GetMapping("/All")
+	@GetMapping("/all")
 	public ResponseEntity<List<Skill>> getAll() {
 		List<Skill> listSkill = repository.findAll();
 		if (listSkill.isEmpty()) {
@@ -48,7 +48,7 @@ public class SkillController {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.findById(idvariavel).get());
 	}
 
-	@GetMapping("/busca/{skill}")
+	@GetMapping("/search/{skill}")
 	public ResponseEntity<List<Skill>> findAllBySkill(@PathVariable("skill") String habilits) {
 		List<Skill> list = repository.findAllBySkillContainingIgnoreCase(habilits);
 		if (list.isEmpty()) {
@@ -58,8 +58,19 @@ public class SkillController {
 
 		}
 	}
+	
+	@GetMapping("/search/{technicalSkill}")
+	public ResponseEntity<List<Skill>> findAllByTechnicalSkill(@PathVariable("technicalSkill") String technicalSkill) {
+		List<Skill> list = repository.findAllByTechnicalSkillContainingIgnoreCase(technicalSkill);
+		if (list.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Deu Ruim!");
+		} else {
+			return ResponseEntity.ok(list);
 
-	@GetMapping("/nivel/{nivel}")
+		}
+	}
+
+	@GetMapping("/search/{nivel}")
 	public ResponseEntity<List<Skill>> findAllByNivel(@PathVariable("nivel") Nivel nivel) {
 		List<Skill> list = repository.findAllByNivel(nivel);
 		return ResponseEntity.ok(list);
@@ -71,7 +82,7 @@ public class SkillController {
 
 	}
 
-	@PutMapping("/alterar/{id}")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<Skill> putSkill(@Valid @RequestBody Skill altSkill) {
 		return repository.findById(altSkill.getId())
 				.map(resp -> ResponseEntity.status(200).body(repository.save(altSkill))).orElseGet(() -> {
