@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,9 +25,11 @@ public class User {
 	private Long id;
 
 	@NotNull
+	@Size(min = 2)
 	private String fullName;
 
 	@NotNull
+	@Size(min = 6)
 	private String password;
 	
 	@NotNull
@@ -51,7 +54,7 @@ public class User {
 	
 	private String type;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Card> card = new ArrayList<>();
 

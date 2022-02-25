@@ -49,7 +49,7 @@ public class Card {
 	@JsonIgnoreProperties("card")
 	private User usuario;
 
-	@OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "card", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("card")
 	private List<Skill> skill = new ArrayList<>();
 
