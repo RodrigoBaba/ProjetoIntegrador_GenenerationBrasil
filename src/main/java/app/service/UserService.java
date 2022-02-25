@@ -20,13 +20,19 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public User saveUser(User user) {
+    public Optional<User> saveUser(User user) {
+    	
+    	if(repository.findByEmail(user.getEmail()).isPresent()) {
+    		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email já existente!");
+    	}
+    	
+    	
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         String passwordEncoder = encoder.encode(user.getPassword());
         user.setPassword(passwordEncoder);
 
-        return repository.save(user);
+        return Optional.of(repository.save(user));
 
     }
 

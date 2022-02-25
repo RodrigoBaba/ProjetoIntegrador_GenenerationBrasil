@@ -76,9 +76,10 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<User> post(@RequestBody User usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(service.saveUser(usuario));
+	public ResponseEntity<User> post(@Valid @RequestBody User user) {
+		return service.saveUser(user)
+				.map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 
 	@PutMapping("/update")
@@ -92,14 +93,14 @@ public class UserController {
 
 	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/delete/{id_user}")
-	public ResponseEntity deleteUsuario(@PathVariable(value = "id_usuario") Long id) {
+	public ResponseEntity deleteUsuario(@PathVariable(value = "id_user") Long id) {
 		Optional<User> optional = repository.findById(id);
 
 		if (optional.isPresent()) {
 			repository.deleteById(id);
 			return ResponseEntity.status(200).build();
 		} else {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");
+			throw new ResponseStatusException(HttpStatus.CREATED, "Id não encontrado!");
 		}
 	}
 

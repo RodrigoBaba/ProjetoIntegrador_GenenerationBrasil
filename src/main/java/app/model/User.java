@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -28,8 +29,8 @@ public class User {
 	@Size(min = 2)
 	private String fullName;
 
-	@NotNull
-	@Size(min = 6)
+	@NotBlank(message = "Minimo 8 caracteres")
+	@Size(min = 8)
 	private String password;
 	
 	@NotNull
