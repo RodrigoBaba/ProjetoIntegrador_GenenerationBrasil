@@ -1,7 +1,7 @@
 
 <img src="https://raw.githubusercontent.com/isabelalberti/ProjetoIntegrador_GenerationBrasil/develop/imagens/bannerEasyWorker.png" max-width="1000px" width="1000px" align="center" alt="curriculo, celular, óculos, lápis">
 
-<h1><strong>Projeto: EasyWorker</h1></strong>
+<h1><strong>Projeto: EasyWork</h1></strong>
 
 ### 🚧 **Projeto em construção** 🚧
 <a href="http://makeapullrequest.com">
