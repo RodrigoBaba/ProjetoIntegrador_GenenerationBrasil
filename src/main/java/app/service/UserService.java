@@ -1,16 +1,15 @@
 package app.service;
 
-import java.nio.charset.Charset;
-import java.util.Optional;
-
+import app.model.UserSecurityLogin;
+import app.model.Usuario;
+import app.repository.UsuarioRepository;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import app.model.UserSecurityLogin;
-import app.model.Usuario;
-import app.repository.UsuarioRepository;
+import java.nio.charset.Charset;
+import java.util.Optional;
 
 @Service
 public class UserService {
