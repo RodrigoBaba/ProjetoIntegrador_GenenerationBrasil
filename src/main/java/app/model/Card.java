@@ -17,11 +17,11 @@ public class Card {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	@NotBlank
 	private Date startDate;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")	
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date endDate;
 	
 	private String institution;
