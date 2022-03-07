@@ -20,7 +20,6 @@ public class Card {
 	private Long id;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@NotBlank
 	private Date startDate;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
