@@ -1,23 +1,15 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_card")
@@ -27,11 +19,10 @@ public class Card {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@NotBlank
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
 	
 	private String institution;
