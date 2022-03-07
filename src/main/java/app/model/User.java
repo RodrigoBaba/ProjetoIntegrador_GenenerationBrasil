@@ -10,46 +10,53 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
-public class Usuario {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
+	@Size(min = 2)
 	private String fullName;
 
-	@NotNull
+	@NotBlank(message = "Minimo 8 caracteres")
+	@Size(min = 8)
 	private String password;
+	
+	@NotNull
+	@Email
+	private String email;
 
 	private String picture;
 
-	private String autoBiography;
-
-	@NotNull
-	private String email;
-
-	@NotNull
+	private String autoBiography;	
+	
 	private String phoneNumber;
 
-	@NotNull
 	private Integer age;
 
 	private String linkedin;
 
 	private String gitHub;
 
-	@NotNull
 	private String city;
+	
+	private String state;
+	
+	private String type;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuario")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("user")
 	private List<Card> card = new ArrayList<>();
 
 	public Long getId() {
@@ -76,6 +83,14 @@ public class Usuario {
 		this.password = password;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getPicture() {
 		return picture;
 	}
@@ -90,14 +105,6 @@ public class Usuario {
 
 	public void setAutoBiography(String autoBiography) {
 		this.autoBiography = autoBiography;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getPhoneNumber() {
@@ -138,6 +145,22 @@ public class Usuario {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}	
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public List<Card> getCard() {

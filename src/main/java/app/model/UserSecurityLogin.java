@@ -10,6 +10,12 @@ public class UserSecurityLogin {
 
 	private String token;
 
+	private Long id;
+	
+	private String picture;
+	
+	private String type;
+
 	public String getFullName() {
 		return fullName;
 	}
@@ -42,4 +48,27 @@ public class UserSecurityLogin {
 		this.token = token;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

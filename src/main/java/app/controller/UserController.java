@@ -20,24 +20,24 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import app.model.UserSecurityLogin;
-import app.model.Usuario;
-import app.repository.UsuarioRepository;
+import app.model.User;
+import app.repository.UserRepository;
 import app.service.UserService;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/user")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class UsuarioController {
+public class UserController {
 
 	@Autowired
-	private UsuarioRepository repository;
+	private UserRepository repository;
 
 	@Autowired
 	UserService service;
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Usuario>> getAll() {
-		List<Usuario> listUsuario = repository.findAll();
+	public ResponseEntity<List<User>> getAll() {
+		List<User> listUsuario = repository.findAll();
 		if (listUsuario.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		} else {
@@ -45,8 +45,8 @@ public class UsuarioController {
 		}
 	}
 
-	@GetMapping("/id/{id_usuario}")
-	public ResponseEntity<Usuario> getById(@PathVariable(value = "id_usuario") Long id) {
+	@GetMapping("/id/{id_user}")
+	public ResponseEntity<User> getById(@PathVariable(value = "id_user") Long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.status(200).body(resp))
 				.orElseGet(() -> {
 					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");
@@ -54,8 +54,8 @@ public class UsuarioController {
 	}
 
 	@GetMapping("/allcity/{cityUser}")
-	public ResponseEntity<List<Usuario>> getAllCity(@PathVariable(value = "cityUser") String cityUser) {
-		List<Usuario> listCity = repository.findAllByCityContainingIgnoreCase(cityUser);
+	public ResponseEntity<List<User>> getAllCity(@PathVariable(value = "cityUser") String cityUser) {
+		List<User> listCity = repository.findAllByCityContainingIgnoreCase(cityUser);
 
 		if (listCity.isEmpty()) {
 
@@ -69,20 +69,21 @@ public class UsuarioController {
 
 	}
 
-	@PostMapping("/logar")
+	@PostMapping("/login")
 	public ResponseEntity<UserSecurityLogin> autentication(@RequestBody Optional<UserSecurityLogin> user) {
 		return service.login(user).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(401).build());
 	}
 
-	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(service.saveUser(usuario));
+	@PostMapping("/register")
+	public ResponseEntity<User> post(@Valid @RequestBody User user) {
+		return service.saveUser(user)
+				.map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Usuario> updateUsuario(@Valid @RequestBody Usuario usuario) {
+	public ResponseEntity<User> updateUsuario(@Valid @RequestBody User usuario) {
 		return repository.findById(usuario.getId())
 				.map(resp -> ResponseEntity.status(200).body(repository.save(usuario)))
 				.orElseGet(() -> {
@@ -91,15 +92,15 @@ public class UsuarioController {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@DeleteMapping("/delete/{id_usuario}")
-	public ResponseEntity deleteUsuario(@PathVariable(value = "id_usuario") Long id) {
-		Optional<Usuario> optional = repository.findById(id);
+	@DeleteMapping("/delete/{id_user}")
+	public ResponseEntity deleteUsuario(@PathVariable(value = "id_user") Long id) {
+		Optional<User> optional = repository.findById(id);
 
 		if (optional.isPresent()) {
 			repository.deleteById(id);
 			return ResponseEntity.status(200).build();
 		} else {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");
+			throw new ResponseStatusException(HttpStatus.CREATED, "Id não encontrado!");
 		}
 	}
 

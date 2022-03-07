@@ -10,5 +10,7 @@ import app.model.Card;
 @Repository
 public interface CardRepository extends JpaRepository<Card, Long> {
 
-	public List<Card> findAllByOccupationContainingIgnoreCase(String funcao);
+	public List<Card> findAllByOccupationContainingIgnoreCase(String occupation);
+	
+	public List<Card> findAllByFormationContainingIgnoreCase(String formation);
 }

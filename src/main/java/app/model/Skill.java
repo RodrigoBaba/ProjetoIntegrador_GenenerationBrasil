@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -23,8 +22,9 @@ public class Skill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank(message = "Skill obrigatorio")
 	private String skill;
+	
+	private String technicalSkill;
 
 	@Enumerated(EnumType.STRING)
 	public Nivel nivel;
@@ -50,6 +50,14 @@ public class Skill {
 		this.skill = skill;
 	}
 
+	public String getTechnicalSkill() {
+		return technicalSkill;
+	}
+
+	public void setTechnicalSkill(String technicalSkill) {
+		this.technicalSkill = technicalSkill;
+	}
+
 	public Nivel getNivel() {
 		return nivel;
 	}
@@ -64,5 +72,5 @@ public class Skill {
 
 	public void setCard(Card card) {
 		this.card = card;
-	}
+	}	
 }

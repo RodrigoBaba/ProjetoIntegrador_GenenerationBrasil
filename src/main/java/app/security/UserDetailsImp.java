@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import app.model.Usuario;
+import app.model.User;
 
 public class UserDetailsImp implements UserDetails {
 
@@ -14,7 +14,7 @@ public class UserDetailsImp implements UserDetails {
 	private String email;
 	private String password;
 
-	public UserDetailsImp(Usuario user) {
+	public UserDetailsImp(User user) {
 		this.email = user.getEmail();
 		this.password = user.getPassword();
 	}
