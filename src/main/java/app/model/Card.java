@@ -1,7 +1,6 @@
 package app.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "tb_card")
@@ -29,10 +27,10 @@ public class Card {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	private LocalDateTime startDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date startDate;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
 	
 	private String institution;
@@ -63,11 +61,11 @@ public class Card {
 		this.id = id;
 	}
 
-	public LocalDateTime getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDateTime startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
