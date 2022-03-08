@@ -1,12 +1,13 @@
 package app.model;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import app.util.Option;
 
 
 @Entity
@@ -33,8 +36,10 @@ public class Card {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
 	
-	private String institution;
+	@Enumerated(EnumType.STRING)
+	private Option optional;
 	
+	private String institution;	
 	
 	private String companyName;
 	
@@ -75,6 +80,14 @@ public class Card {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}	
+
+	public Option getOption() {
+		return optional;
+	}
+
+	public void setOption(Option option) {
+		this.optional = option;
 	}
 
 	public String getInstitution() {

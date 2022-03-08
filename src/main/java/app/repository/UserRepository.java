@@ -13,4 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	public List<User> findAllByCityContainingIgnoreCase(String cityUser);
 
 	public Optional<User> findByEmail(String email);
+	
+	public List<User> findAllByGenderContainingIgnoreCase(String gender);
+
 }

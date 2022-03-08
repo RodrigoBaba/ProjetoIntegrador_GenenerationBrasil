@@ -64,9 +64,21 @@ public class UserController {
 		} else {
 
 			return ResponseEntity.ok(listCity);
-
 		}
+	}
+	
+	@GetMapping("/gender/{gender}")
+	public ResponseEntity<List<User>> getAllGender(@PathVariable(value = "gender") String gender) {
+		List<User> list = repository.findAllByGenderContainingIgnoreCase(gender);
 
+		if (list.isEmpty()) {
+
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
+		} else {
+
+			return ResponseEntity.ok(list);
+		}
 	}
 
 	@PostMapping("/login")

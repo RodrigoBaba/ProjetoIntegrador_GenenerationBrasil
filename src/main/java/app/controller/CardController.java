@@ -21,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import app.model.Card;
 import app.repository.CardRepository;
+import app.util.Option;
 
 @RestController
 @RequestMapping("/card")
@@ -48,7 +49,7 @@ public class CardController {
         return ResponseEntity.status(HttpStatus.OK).body(repository.findById(idvariavel).get());
     }
 
-    @GetMapping("/search/{occupation}")
+    @GetMapping("/occupation/{occupation}")
     public ResponseEntity<List<Card>> findAllByOccupation(@PathVariable("occupation") String occupation) {
         List<Card> list = repository.findAllByOccupationContainingIgnoreCase(occupation);
 
@@ -61,7 +62,7 @@ public class CardController {
         }
     }
     
-    @GetMapping("/search/{formation}")
+    @GetMapping("/formation/{formation}")
     public ResponseEntity<List<Card>> findAllByFormation(@PathVariable("formation") String formation) {
         List<Card> list = repository.findAllByFormationContainingIgnoreCase(formation);
 
@@ -73,6 +74,12 @@ public class CardController {
 
         }
     }
+    
+    @GetMapping("/option/{optional}")
+	public ResponseEntity<List<Card>> findAllByOption(@PathVariable("optional") Option optional) {
+		List<Card> list = repository.findAllByOptional(optional);
+		return ResponseEntity.ok(list);
+	}
 
     @PostMapping("/insert")
     public ResponseEntity<Card> insert(@Valid @RequestBody Card postCard) {
