@@ -87,7 +87,7 @@ public class CardController {
 
     }
     
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
 	public ResponseEntity<Card> putCard(@Valid @RequestBody Card altCard) {
 		return repository.findById(altCard.getId())
 				.map(resp -> ResponseEntity.status(200).body(repository.save(altCard))).orElseGet(() -> {

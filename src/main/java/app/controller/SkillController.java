@@ -87,7 +87,7 @@ public class SkillController {
 
 	}
 
-	@PutMapping("/update/{id}")
+	@PutMapping("/update")
 	public ResponseEntity<Skill> putSkill(@Valid @RequestBody Skill altSkill) {
 		return repository.findById(altSkill.getId())
 				.map(resp -> ResponseEntity.status(200).body(repository.save(altSkill))).orElseGet(() -> {
