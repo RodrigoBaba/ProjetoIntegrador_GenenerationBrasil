@@ -1,13 +1,26 @@
 package app.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import app.util.Option;
+
 
 @Entity
 @Table(name = "tb_card")
@@ -17,14 +30,16 @@ public class Card {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@NotBlank
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
 
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
 	
-	private String institution;
+	@Enumerated(EnumType.STRING)
+	private Option optional;
+	
+	private String institution;	
 	
 	private String companyName;
 	
@@ -67,6 +82,14 @@ public class Card {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}	
+
+	public Option getOption() {
+		return optional;
+	}
+
+	public void setOption(Option option) {
+		this.optional = option;
 	}
 
 	public String getInstitution() {

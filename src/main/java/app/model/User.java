@@ -17,8 +17,9 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @Entity
-@Table(name = "tb_usuarios")
+@Table(name = "tb_user")
 public class User {
 
 	@Id
@@ -29,8 +30,8 @@ public class User {
 	@Size(min = 2)
 	private String fullName;
 
-	@NotBlank(message = "Minimo 8 caracteres")
-	@Size(min = 8)
+	@NotBlank(message = "Minimo 6 caracteres")
+	@Size(min = 6)
 	private String password;
 	
 	@NotNull
@@ -51,9 +52,11 @@ public class User {
 
 	private String city;
 	
-	private String state;
+	private String state;	
 	
 	private String type;
+	
+	private String gender;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("user")
@@ -161,6 +164,14 @@ public class User {
 
 	public void setType(String type) {
 		this.type = type;
+	}	
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public List<Card> getCard() {

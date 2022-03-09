@@ -38,7 +38,7 @@ public class SkillController {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.findById(idvariavel).get());
 	}
 
-	@GetMapping("/search/{skill}")
+	@GetMapping("/skill/{skill}")
 	public ResponseEntity<List<Skill>> findAllBySkill(@PathVariable("skill") String habilits) {
 		List<Skill> list = repository.findAllBySkillContainingIgnoreCase(habilits);
 		if (list.isEmpty()) {
@@ -49,7 +49,7 @@ public class SkillController {
 		}
 	}
 	
-	@GetMapping("/search/{technicalSkill}")
+	@GetMapping("/technicalSkill/{technicalSkill}")
 	public ResponseEntity<List<Skill>> findAllByTechnicalSkill(@PathVariable("technicalSkill") String technicalSkill) {
 		List<Skill> list = repository.findAllByTechnicalSkillContainingIgnoreCase(technicalSkill);
 		if (list.isEmpty()) {
@@ -60,10 +60,15 @@ public class SkillController {
 		}
 	}
 
-	@GetMapping("/search/{nivel}")
+	@GetMapping("/nivel/{nivel}")
 	public ResponseEntity<List<Skill>> findAllByNivel(@PathVariable("nivel") Nivel nivel) {
 		List<Skill> list = repository.findAllByNivel(nivel);
-		return ResponseEntity.ok(list);
+		
+		if(list.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Lista Vazia!");
+		} else { 
+			return ResponseEntity.ok(list);
+		}
 	}
 
 	@PostMapping("/insert")
@@ -73,7 +78,7 @@ public class SkillController {
 
 	}
 
-	@PutMapping("/update/{id}")
+	@PutMapping("/update")
 	public ResponseEntity<Skill> putSkill(@Valid @RequestBody Skill altSkill) {
 		return repository.findById(altSkill.getId())
 				.map(resp -> ResponseEntity.status(200).body(repository.save(altSkill))).orElseGet(() -> {
@@ -92,9 +97,7 @@ public class SkillController {
 			return ResponseEntity.status(200).build();
 
 		} else {
-
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id não encontrado!");
-
 		}
 	}
 
