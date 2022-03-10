@@ -1,21 +1,14 @@
 package app.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -57,6 +50,8 @@ public class User {
 	private String type;
 	
 	private String gender;
+
+	private String descriptionPersonal;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("user")
@@ -172,6 +167,14 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getDescriptionPersonal() {
+		return descriptionPersonal;
+	}
+
+	public void setDescriptionPersonal(String descriptionPersonal) {
+		this.descriptionPersonal = descriptionPersonal;
 	}
 
 	public List<Card> getCard() {

@@ -49,6 +49,8 @@ public class Card {
 
 	private String image;
 
+	private String description;
+
 	@ManyToOne
 	@JoinColumn(name = "fk_user")
 	@JsonIgnoreProperties("card")
@@ -130,6 +132,14 @@ public class Card {
 		this.image = image;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -144,5 +154,6 @@ public class Card {
 
 	public void setSkill(List<Skill> skill) {
 		this.skill = skill;
-	}	
+	}
+
 }
