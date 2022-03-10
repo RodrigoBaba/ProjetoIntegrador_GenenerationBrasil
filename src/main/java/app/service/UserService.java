@@ -61,4 +61,23 @@ public class UserService {
         }
         return null;
     }
+    
+    public Optional<User> updateUser(User user){
+		if(repository.findById(user.getId()).isPresent()) {
+			Optional<User> searchUser = repository.findByEmail(user.getEmail());
+			if(searchUser.isPresent()) {
+				if(searchUser.get().getId() != user.getId()) 
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já exise", null);									
+			}
+			user.setPassword(encryptedPassword(user.getPassword()));
+			return Optional.of(repository.save(user));
+		}
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado!", null);
+	}
+    
+    private String encryptedPassword(String password) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String passwordEncoder = encoder.encode(password);
+		return passwordEncoder;
+	}
 }

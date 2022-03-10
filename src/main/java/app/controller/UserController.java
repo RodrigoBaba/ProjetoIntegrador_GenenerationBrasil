@@ -96,11 +96,9 @@ public class UserController {
 
 	@PutMapping("/update")
 	public ResponseEntity<User> updateUsuario(@Valid @RequestBody User usuario) {
-		return repository.findById(usuario.getId())
-				.map(resp -> ResponseEntity.status(200).body(repository.save(usuario)))
-				.orElseGet(() -> {
-					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id não encontrado!");
-				});
+		return service.updateUser(usuario)
+				.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 
 	@SuppressWarnings("rawtypes")
