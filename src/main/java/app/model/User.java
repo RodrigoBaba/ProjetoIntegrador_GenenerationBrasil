@@ -58,8 +58,6 @@ public class User {
 	
 	private String gender;
 
-	private String descriptionPersonal;
-
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("user")
 	private List<Card> card = new ArrayList<>();
@@ -174,15 +172,7 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-
-	public String getDescriptionPersonal() {
-		return descriptionPersonal;
-	}
-
-	public void setDescriptionPersonal(String descriptionPersonal) {
-		this.descriptionPersonal = descriptionPersonal;
-	}
+	}	
 
 	public List<Card> getCard() {
 		return card;
