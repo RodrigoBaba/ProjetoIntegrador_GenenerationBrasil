@@ -37,17 +37,19 @@ public class User {
 	@NotNull
 	@Email
 	private String email;
-
+	
+	@Size(max = 500)
 	private String picture;
-
+	
+	@Size(max = 520)
 	private String autoBiography;	
 	
 	private String phoneNumber;
 
 	private Integer age;
-
+	
 	private String linkedin;
-
+	
 	private String gitHub;
 
 	private String city;

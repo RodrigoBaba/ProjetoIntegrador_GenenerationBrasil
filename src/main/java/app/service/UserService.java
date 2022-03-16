@@ -62,15 +62,42 @@ public class UserService {
         return null;
     }
     
-    public Optional<User> updateUser(User user){
-		if(repository.findById(user.getId()).isPresent()) {
-			Optional<User> searchUser = repository.findByEmail(user.getEmail());
-			if(searchUser.isPresent()) {
-				if(searchUser.get().getId() != user.getId()) 
+    public Optional<User> updateBio(User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        Optional<User> usuario = repository.findByEmail(user.getEmail());
+
+        if (usuario.isPresent()) {
+            if (encoder.matches(user.getPassword(), usuario.get().getPassword())) {
+    
+            	usuario.get().setAutoBiography(user.getAutoBiography());           
+
+            	return Optional.of(repository.save(usuario.get())); 
+            	}  
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Senha Inválida");
+        }
+        return null;
+    }
+    
+    public Optional<User> updateUser(User form){
+		if(repository.findById(form.getId()).isPresent()) {
+
+			Optional<User> userDB = repository.findByEmail(form.getEmail());
+			if(userDB.isPresent()) {
+				if(userDB.get().getId() != form.getId()) 
 					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já exise", null);									
 			}
-			user.setPassword(encryptedPassword(user.getPassword()));
-			return Optional.of(repository.save(user));
+			userDB.get().setFullName(form.getFullName());
+			userDB.get().setPassword(encryptedPassword(form.getPassword()));
+			userDB.get().setPicture(form.getPicture());
+			userDB.get().setAutoBiography(form.getAutoBiography());
+			userDB.get().setPhoneNumber(form.getPhoneNumber());
+			userDB.get().setAge(form.getAge());
+			userDB.get().setLinkedin(form.getLinkedin());
+			userDB.get().setGitHub(form.getGitHub());
+			userDB.get().setCity(form.getCity());
+			userDB.get().setState(form.getState());
+			userDB.get().setGender(form.getGender());
+			return Optional.of(repository.save(userDB.get()));
 		}
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado!", null);
 	}

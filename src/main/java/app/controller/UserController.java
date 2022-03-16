@@ -100,6 +100,13 @@ public class UserController {
 				.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
 				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
+	
+	@PutMapping("/updateBio")
+	public ResponseEntity<User> updateBio(@Valid @RequestBody User usuario) {
+		return service.updateBio(usuario)
+				.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+	}
 
 	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/delete/{id_user}")
