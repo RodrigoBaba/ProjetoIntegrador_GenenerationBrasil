@@ -63,17 +63,14 @@ public class UserService {
     }
     
     public Optional<User> updateBio(User user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         Optional<User> usuario = repository.findByEmail(user.getEmail());
 
         if (usuario.isPresent()) {
-            if (encoder.matches(user.getPassword(), usuario.get().getPassword())) {
     
-            	usuario.get().setAutoBiography(user.getAutoBiography());           
+            usuario.get().setAutoBiography(user.getAutoBiography());           
 
-            	return Optional.of(repository.save(usuario.get())); 
-            	}  
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Senha Inválida");
+            return Optional.of(repository.save(usuario.get())); 
+            	  
         }
         return null;
     }
